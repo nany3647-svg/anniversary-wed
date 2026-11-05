@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Anniversary My Love | ຄົບຮອບຄວາມຮັກຂອງເຮົາ</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Lao (Noto Sans Lao & Great Vibes) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Noto+Sans+Lao:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        rosepink: '#ff758c',
+                        softrose: '#ff7eb3',
+                        deeprose: '#e11d48',
+                        romanticpurple: '#4a154b',
+                    },
+                    fontFamily: {
+                        lao: ['"Noto Sans Lao"', 'sans-serif'],
+                        cursive: ['"Great Vibes"', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen text-gray-800 relative font-lao">
+
+    <!-- Container for Floating Hearts Background -->
+    <div id="hearts-container" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
+
+    <!-- Background Music Audio Tag -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-piano-wedding-love-114382.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Audio Player Toggle Floating Button -->
+    <button id="music-toggle" class="fixed top-5 right-5 z-50 bg-white/80 hover:bg-white text-pink-600 p-3 rounded-full shadow-lg border border-pink-200 transition-all transform hover:scale-110 flex items-center gap-2 text-sm font-semibold backdrop-blur-md">
+        <i id="music-icon" class="fas fa-music"></i>
+        <span id="music-text">ເປີດເພງ</span>
+    </button>
+
+    <!-- ================= 1. UNLOCK / GIFT BOX SCREEN ================= -->
+    <section id="unlock-screen" class="fixed inset-0 z-40 bg-gradient-to-br from-pink-500 via-rose-500 to-red-600 flex flex-col items-center justify-center p-4 transition-all duration-1000 ease-in-out">
+        <div class="text-center text-white max-w-lg mx-auto">
+            <div class="mb-8 relative inline-block">
+                <div id="gift-box-btn" class="w-36 h-36 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-md animate-bounce mx-auto cursor-pointer shadow-2xl pulse-glow hover:bg-white/30 transition-all">
+                    <i class="fas fa-gift text-7xl text-white"></i>
+                </div>
+                <div class="absolute -top-2 -right-2 bg-yellow-400 text-rose-800 text-xs font-bold px-3 py-1 rounded-full shadow-md animate-pulse">
+                    ມີຂອງຂວັນ!
+                </div>
+            </div>
+            
+            <h1 class="text-3xl md:text-5xl font-bold mb-4 font-lao drop-shadow-md">
+                ມີຂອງຂວັນເຊີໄພ້ສຸດພິເສດ! ❤️
+            </h1>
+            <p class="text-pink-100 text-lg mb-8 font-lao font-light">
+                ສຳລັບຄົນທີ່ສຳຄັນທີ່ສຸດໃນຊີວິດຂອງຂ້ອຍ... ກົດປຸ່ມດ້ານລຸ່ມເພື່ອເປີດເບິ່ງເລື່ອງລາວຂອງເຮົາ
+            </p>
+
+            <button id="unlock-btn" class="bg-white text-rose-600 font-bold px-8 py-4 rounded-full text-xl shadow-2xl hover:bg-rose-50 hover:scale-105 active:scale-95 transition-all duration-300 font-lao pulse-glow flex items-center justify-center gap-3 mx-auto">
+                <i class="fas fa-heart text-rose-500"></i>
+                ເປີດຂອງຂວັນ / Open Gift
+                <i class="fas fa-heart text-rose-500"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- ================= MAIN APP CONTENT ================= -->
+    <main id="main-content" class="relative z-10 opacity-0 transition-opacity duration-1000 hidden">
+
+        <!-- HERO SECTION -->
+        <header class="min-h-screen flex flex-col justify-center items-center text-center px-4 py-16 relative">
+            <div class="inline-block bg-pink-100 text-rose-600 px-4 py-1.5 rounded-full text-sm font-semibold mb-4 shadow-sm border border-pink-200">
+                ✨ Happy Anniversary My Dear ✨
+            </div>
+            
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 via-pink-600 to-red-500 mb-6 font-lao leading-tight">
+                ສຸກສັນວັນຄົບຮອບຄວາມຮັກ ❤️
+            </h1>
+            
+            <p class="text-lg md:text-2xl text-gray-700 max-w-2xl font-lao font-normal mb-8 leading-relaxed">
+                "ຂອບໃຈທີ່ເຂົ້າມາມອບຄວາມຮັກ, ຄວາມອົບອຸ່ນ ແລະ ຮອຍຍິ້ມໃຫ້ຂ້ອຍໃນທຸກໆມື້"
+            </p>
+
+            <!-- REAL-TIME LOVE COUNTER -->
+            <div class="glass-card rounded-3xl p-6 md:p-8 shadow-2xl max-w-3xl w-full border border-white/60 mb-8">
+                <h2 class="text-gray-600 text-sm md:text-base font-semibold uppercase tracking-wider mb-4 font-lao">
+                    ⏰ ເວລາທີ່ເຮົາຮັກກັນມາແລ້ວ
+                </h2>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <div class="bg-gradient-to-b from-rose-500 to-pink-600 text-white rounded-2xl p-4 shadow-md">
+                        <span id="days" class="text-3xl md:text-5xl font-extrabold block">00</span>
+                        <span class="text-xs md:text-sm text-pink-100 font-lao">ມື້</span>
+                    </div>
+                    <div class="bg-gradient-to-b from-rose-500 to-pink-600 text-white rounded-2xl p-4 shadow-md">
+                        <span id="hours" class="text-3xl md:text-5xl font-extrabold block">00</span>
+                        <span class="text-xs md:text-sm text-pink-100 font-lao">ຊົ່ວໂມງ</span>
+                    </div>
+                    <div class="bg-gradient-to-b from-rose-500 to-pink-600 text-white rounded-2xl p-4 shadow-md">
+                        <span id="minutes" class="text-3xl md:text-5xl font-extrabold block">00</span>
+                        <span class="text-xs md:text-sm text-pink-100 font-lao">ນາທີ</span>
+                    </div>
+                    <div class="bg-gradient-to-b from-rose-500 to-pink-600 text-white rounded-2xl p-4 shadow-md">
+                        <span id="seconds" class="text-3xl md:text-5xl font-extrabold block">00</span>
+                        <span class="text-xs md:text-sm text-pink-100 font-lao">ວິນາທີ</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <a href="#timeline" class="animate-bounce text-pink-500 hover:text-rose-600 transition-colors mt-6">
+                <i class="fas fa-chevron-down text-3xl"></i>
+            </a>
+        </header>
+
+        <!-- MEMORY TIMELINE SECTION -->
+        <section id="timeline" class="py-20 px-4 max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-rose-500 font-semibold font-lao text-sm tracking-widest uppercase">Our Journey</span>
+                <h2 class="text-3xl md:text-5xl font-bold text-gray-800 font-lao mt-2">
+                    ເສັ້ນທາງຄວາມຮັກຂອງເຮົາ 💕
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-pink-500 to-rose-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="relative border-l-4 border-pink-300 ml-4 md:ml-32 space-y-12">
+                <!-- Card 1 -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-rose-500 border-4 border-white text-white flex items-center justify-center text-xs shadow-md group-hover:scale-125 transition-transform duration-300">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="glass-card p-6 rounded-3xl shadow-lg border border-pink-100 hover:shadow-2xl transition-all duration-300">
+                        <span class="inline-block bg-rose-100 text-rose-600 font-bold px-3 py-1 rounded-full text-xs mb-3 font-lao">
+                            📅 ມື້ທຳອິດທີ່ໄດ້ພົບກັນ
+                        </span>
+                        <h3 class="text-xl font-bold text-gray-800 font-lao mb-2">ຈຸດເລີ່ມຕົ້ນຂອງຄວາມຮັກ</h3>
+                        <p class="text-gray-600 font-lao text-sm leading-relaxed mb-4">
+                            ມື້ທຳອິດທີ່ໄດ້ເຈົ້າໄດ້ກ້າວເຂົ້າມາມີສ່ວນໜຶ່ງໃນຊີວິດຂອງຂ້ອຍ ໂລກທັງໃບກໍຄືວ່າສົດໃສຂຶ້ນມາທັນທີ.
+                        </p>
+                        <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=800&q=80" alt="First Encounter" class="w-full h-56 object-cover rounded-2xl shadow-sm hover:opacity-95 transition-opacity" onerror="this.src='https://placehold.co/600x400/ff758c/ffffff?text=First+Date'">
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-pink-500 border-4 border-white text-white flex items-center justify-center text-xs shadow-md group-hover:scale-125 transition-transform duration-300">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <div class="glass-card p-6 rounded-3xl shadow-lg border border-pink-100 hover:shadow-2xl transition-all duration-300">
+                        <span class="inline-block bg-pink-100 text-pink-600 font-bold px-3 py-1 rounded-full text-xs mb-3 font-lao">
+                            ✈️ ທຣິບທ່ອງທ່ຽວນຳກັນ
+                        </span>
+                        <h3 class="text-xl font-bold text-gray-800 font-lao mb-2">ຄວາມทรงຈຳດີໆໃນທຸກໆການເດີນທາງ</h3>
+                        <p class="text-gray-600 font-lao text-sm leading-relaxed mb-4">
+                            ບໍ່ວ່າຈະໄປໃສ ຂໍພຽງແຕ່ມີເຈົ້າຢູ່ຄຽງຂ້າງ ທຸກໆບ່ອນກໍກາຍເປັນບ່ອນທີ່ພິເສດທີ່ສຸດ ສຳລັບຂ້ອຍສະເໝີ.
+                        </p>
+                        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80" alt="Trip Together" class="w-full h-56 object-cover rounded-2xl shadow-sm hover:opacity-95 transition-opacity" onerror="this.src='https://placehold.co/600x400/ff7eb3/ffffff?text=Our+Trip'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE LOVE LETTER SECTION -->
+        <section class="py-20 px-4 bg-gradient-to-b from-transparent via-pink-100/50 to-transparent">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 font-lao">
+                        ຂໍ້ຄວາມຈາກໃຈ 💌
+                    </h2>
+                    <p class="text-gray-600 font-lao mt-2">ກົດທີ່ຈົດໝາຍເພື່ອເປີດອ່ານຄວາມຮູ້ສຶກຂອງຂ້ອຍ</p>
+                </div>
+
+                <!-- Expandable Love Letter Card -->
+                <div id="letter-card" class="glass-card p-8 md:p-12 rounded-3xl shadow-2xl relative border border-white/80 transition-all duration-500 cursor-pointer hover:shadow-pink-200">
+                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-rose-500 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg text-xl border-2 border-white">
+                        <i id="letter-icon" class="fas fa-envelope"></i>
+                    </div>
+
+                    <div class="text-center font-bold text-rose-600 text-xl font-lao pt-4 mb-2">
+                        ເຖິງ ທີ່ຮັກຂອງຂ້ອຍ... ❤️
+                    </div>
+
+                    <!-- Collapsible Content -->
+                    <div id="letter-content" class="font-lao space-y-4 text-gray-700 leading-relaxed text-base md:text-lg overflow-hidden transition-all duration-700 max-h-16 opacity-70">
+                        <p class="text-center italic text-sm text-gray-500 mb-4">( ກົດບ່ອນນີ້ເພື່ອເປີດອ່ານຈົດໝາຍເຕັມ... )</p>
+                        <p>
+                            ຂອບໃຈສຳລັບທຸກໆສິ່ງທຸກໆຢ່າງທີ່ເຈົ້າໄດ້ເຮັດໃຫ້ຂ້ອຍ ຂອບໃຈຄວາມຮັກ, ຄວາມເອົາໃຈໃສ່ ແລະ ຄວາມອົບອຸ່ນທີ່ເຈົ້າມີໃຫ້ຂ້ອຍສະເໝີມາ. 
+                        </p>
+                        <p>
+                            ຢູ່ກັບເຈົ້າແລ້ວຂ້ອຍມີຄວາມສຸກຫຼາຍ ເຈົ້າເປັນຄືກັບຮອຍຍິ້ມ ແລະ ເປັນກຳລັງໃຈທີ່ສຳຄັນທີ່ສຸດໃນຊີວິດຂອງຂ້ອຍ. ໃນວັນຄົບຮອບນີ້ ຂ້ອຍຢາກບອກໃຫ້ເຈົ້າຮູ້ວ່າ ຂ້ອຍຮັກເຈົ້າຫຼາຍເດີ້.
+                        </p>
+                        <p>
+                            ສັນຍາວ່ານັບຈາກນີ້ ແລະ ຕະຫຼອດໄປ ຂ້ອຍຈະດູແລ ແລະ ຮັກເຈົ້າໃຫ້ດີທີ່ສຸດ.
+                        </p>
+                        <div class="text-right pt-6">
+                            <p class="font-bold text-rose-600 font-cursive text-3xl">With All My Love,</p>
+                            <p class="font-semibold text-gray-800 mt-1">ຈາກຄົນທີ່ຮັກເຈົ້າที่สุด ❤️</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SURPRISE VOUCHER TRIGGER -->
+        <section class="py-20 px-4 text-center">
+            <div class="max-w-xl mx-auto">
+                <h2 class="text-3xl font-bold text-gray-800 font-lao mb-4">
+                    ຄວາມລັບທີ່ຊ່ອນຢູ່... 🎁
+                </h2>
+                <p class="text-gray-600 font-lao mb-8">
+                    ກົດປຸ່ມດ້ານລຸ່ມນີ້ເພື່ອຮັບຄູປອງຄວາມຮັກພິເສດ!
+                </p>
+
+                <button id="open-voucher-btn" class="bg-gradient-to-r from-rose-500 via-pink-500 to-red-500 text-white font-bold px-8 py-4 rounded-full text-lg shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 font-lao flex items-center justify-center gap-3 mx-auto">
+                    <i class="fas fa-gift text-2xl animate-bounce"></i>
+                    ກົດເພື່ອເບິ່ງຄວາມລັບ!
+                </button>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="py-8 text-center text-gray-500 font-lao text-sm border-t border-pink-200/60">
+            <p>Made with ❤️ specially for you on our Anniversary</p>
+        </footer>
+    </main>
+
+    <!-- ================= SURPRISE VOUCHER MODAL ================= -->
+    <div id="surprise-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div id="modal-card" class="glass-card bg-white rounded-3xl p-8 max-w-md w-full text-center relative border-2 border-rose-300 shadow-2xl transform scale-90 transition-transform duration-300">
+            
+            <button id="close-voucher-btn" class="absolute top-4 right-4 text-gray-400 hover:text-rose-500 text-xl font-bold w-8 h-8 rounded-full flex items-center justify-center bg-gray-100 hover:bg-rose-50 transition-colors">
+                ✕
+            </button>
+
+            <div class="w-20 h-20 bg-rose-100 text-rose-500 rounded-full flex items-center justify-center mx-auto mb-4 text-4xl shadow-inner">
+                <i class="fas fa-utensils"></i>
+            </div>
+
+            <span class="inline-block bg-rose-500 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-widest mb-2 font-lao">
+                Special Surprise Voucher
+            </span>
+
+            <h3 class="text-2xl font-bold text-gray-800 font-lao mb-2">
+                🎉 ດິນເນີສຸດພິເສດ! 🍷
+            </h3>
+
+            <p class="text-gray-600 font-lao text-sm mb-6 leading-relaxed">
+                ຄູປອງນີ້ສາມາດນຳໄປແລກເປັນ **"ດິນເນີສຸດໂຣແມນຕິກ"** ຢູ່ຮ້ານອາຫານທີ່ເຈົ້າຢາກໄປ ພ້ອມກັບມອບຕາມໃຈ 1 ມື້ເຕັມ!
+            </p>
+
+            <div class="p-4 bg-pink-50 border border-dashed border-rose-300 rounded-2xl mb-6">
+                <p class="text-xs text-rose-600 font-semibold font-lao">ລາງວັນນີ້ບໍ່ມີວັນໝົດອາຍຸ (ໃຊ້ໄດ້ຕະຫຼອດໄປ)</p>
+            </div>
+
+            <button id="claim-voucher-btn" class="w-full bg-rose-500 hover:bg-rose-600 text-white font-bold py-3 rounded-2xl transition-colors font-lao shadow-md">
+                ຕົກລົງ, ຂ້ອຍຮັບຄູປອງນີ້! ❤️
+            </button>
+        </div>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
